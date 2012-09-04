@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   LOCATION_URL = "https://drivetoimprove.co.uk/api/m/AllVehiclesStatus".freeze
 
   def self.load_or_fetch
-    latest = Location.order("created_at DESC").last
+    latest = Location.order("created_at DESC").first
     return Location.fetch if latest.nil? || latest.created_at < 3.minutes.ago
     latest
   end
