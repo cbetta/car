@@ -1,0 +1,38 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBTddOXPE9_Abf95rQwZEKeHrgaZzUDNMs&sensor=false"></script>
+
+<script type="text/javascript">
+	function loadMap() {
+		var location = new google.maps.LatLng(<%= @location[:latitude] %>, <%= @location[:longitude] %>);
+		
+		var mapOptions = {
+	  	center: location,
+	  	zoom: 14,
+	  	mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		
+		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		
+		var marker = new google.maps.Marker({
+		  position: location,
+		  title:"Car"
+		});
+		
+		marker.setMap(map);
+		
+		var info = new google.maps.InfoWindow({
+		    content: "<div id='info'><%= @location[:area] %><br/><small>Last seen <%= time_ago_in_words(@location[:seen]) %> ago</small></div>"
+		});
+		
+		info.open(map, marker);
+	}
+	
+
+	
+ 	$(document).ready(function(){
+ 		loadMap();
+ 	});
+</script>
+	
+	
+<div id="map"></div>

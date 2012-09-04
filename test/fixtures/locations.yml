@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  area: MyText
+  latitude: MyString
+  longitude: MyString
+  seen: 2012-09-04 23:58:33
+
+two:
+  area: MyText
+  latitude: MyString
+  longitude: MyString
+  seen: 2012-09-04 23:58:33
