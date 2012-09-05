@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904225830) do
+ActiveRecord::Schema.define(:version => 20120904235144) do
 
   create_table "locations", :force => true do |t|
     t.text     "area"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(:version => 20120904225830) do
     t.datetime "seen"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "auth_token"
+    t.datetime "auth_at"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "provider"
+    t.boolean  "access",     :default => false
+    t.string   "email"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
 end
