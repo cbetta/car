@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless logged_in?
   end
   
+  def require_access
+    logout current_user unless access?
+  end
+  
   def require_logout
     redirect_to root_url if logged_in?
   end
