@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :access?
   
   def current_user
-    return nil unless session[:user_token]
+    return nil if session[:user_token].blank?
     @current_user ||= User.find_by_auth_token(session[:user_token])
     check_session_expired
     @current_user
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
   
   def logout user
-    current_user.invalidate_auth_token
+    user.clear_auth_token
     session[:user_token] = nil
     redirect_to login_path
   end

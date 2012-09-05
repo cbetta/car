@@ -6,6 +6,7 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'awesome_print'
 gem 'omniauth-facebook'
+gem 'font-awesome-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

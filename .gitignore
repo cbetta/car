@@ -14,3 +14,4 @@
 /log/*.log
 /tmp
 config/initializers/d2i.rb
+config/initializers/facebook.rb

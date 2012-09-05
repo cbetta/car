@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
     auth_token
   end
   
+  def clear_auth_token
+    self.auth_at = nil
+    self.auth_token = nil
+    save!
+  end
+  
   def auth_token_expired?
     auth_at < 1.day.ago
   end
