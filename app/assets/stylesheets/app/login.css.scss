@@ -11,11 +11,17 @@
 	
 	a {
 		display: block;
-		width: 154px;
-		height: 22px;
-		text-indent: -1000px;
-		background-image: url("/assets/facebook-login.png");
 		margin: 50px auto;
+		width: 300px;
+		line-height: 24px;
+		color: #333;
+		
+		&.facebook {
+			width: 154px;
+			height: 22px;
+			text-indent: -1000px;
+			background-image: url("/assets/facebook-login.png");
+		}
 	}
 	
 	a:hover {

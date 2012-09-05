@@ -1,5 +1,5 @@
 class LoginController < ApplicationController
-  before_filter :require_logout, except: :destroy
+  before_filter :require_logout, except: [:destroy, :no_access]
   
   def index
   end
@@ -11,5 +11,8 @@ class LoginController < ApplicationController
   
   def destroy
     logout current_user
+  end
+  
+  def no_access
   end
 end

@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
   end
   
   def require_access
-    logout current_user unless access?
+    unless access?
+      current_user.clear_auth_token
+      session[:user_token] = nil
+      redirect_to no_access_path
+    end
   end
   
   def require_logout
