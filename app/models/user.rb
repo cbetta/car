@@ -36,10 +36,10 @@ class User < ActiveRecord::Base
   def is_allowed?
     facebook = Koala::Facebook::API.new(admin.oauth_token)
     members = facebook.get_connections("10151006453916946", "members").map{|member| member["id"]}
-    members.include? id
+    members.include? uid
   end
   
   def admin
-    User.where(uid: "520391945").first
+    @admin ||= User.where(uid: "520391945").first
   end
 end
