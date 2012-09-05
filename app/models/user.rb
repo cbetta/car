@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   
   def self.from auth
     User.where(uid: auth[:uid], provider: auth[:provider]).first_or_create!({
-      email: auth[:info][:email],
       name: auth[:info][:name],
       oauth_token: auth[:credentials][:token]
     })
