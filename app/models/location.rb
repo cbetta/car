@@ -17,7 +17,8 @@ class Location < ActiveRecord::Base
     
     latitude = status["gpsLatitude"] || status["gpsPosition"]["Latitude"]["Radians"]
     longitude = status["gpsLongitude"] || status["gpsPosition"]["Longitude"]["Radians"]
+    msg_type = Location::Type[status["sysMsgType"]]
     
-    Location.where(area: area, latitude: latitude.to_s, longitude: longitude.to_s, seen: seen).first_or_create!
+    Location.where(area: area, latitude: latitude.to_s, longitude: longitude.to_s, seen: seen, msg_type: msg_type).first_or_create!
   end
 end
