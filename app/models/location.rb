@@ -1,30 +1,23 @@
 class Location < ActiveRecord::Base
   attr_accessible :area, :latitude, :longitude, :seen
   
-  LOCATION_URL = "https://drivetoimprove.co.uk/api/m/AllVehiclesStatus".freeze
-
-  def self.load_or_fetch
+  def self.current
     latest = Location.order("created_at DESC").first
-    return Location.fetch if latest.nil? || latest.created_at < 3.minutes.ago
+    return Location::Loader.new.load_current if latest.nil? || latest.created_at < 1.minutes.ago
     latest
   end
-    
-  def self.fetch
-    status = Faraday.new do |faraday|
-      faraday.response :json, :content_type => /\bjson$/
-      faraday.basic_auth ENV["D2I_EMAIL"], ENV["D2I_PASSWORD"]
-      faraday.adapter Faraday.default_adapter
-    end.get(LOCATION_URL).body["GetAllVehiclesStatusResult"].first
-    
-    Location.create! area: Location.area_from(status), latitude: status["gpsLatitude"], longitude: status["gpsLongitude"], seen: Time.at(status["gpsTimeLong"].to_i/10000000)
-  end
   
-  def self.area_from status
-    [
-      status["geoPOI"],
+  def self.from status
+    seen =  Time.at(status["gpsTimeLong"].to_i/10_000_000)
+    area = [ status["geoPOI"],
       status["geoStreet"],
       status["geoTown"],
       status["geoCountry"],
     ].reject(&:blank?).compact.join(", ")
+    
+    latitude = status["gpsLatitude"] || status["gpsPosition"]["Latitude"]["Radians"]
+    longitude = status["gpsLongitude"] || status["gpsPosition"]["Longitude"]["Radians"]
+    
+    Location.where(area: area, latitude: latitude.to_s, longitude: longitude.to_s, seen: seen).first_or_create!
   end
 end
