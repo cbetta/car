@@ -14,5 +14,11 @@
 /log/*.log
 /tmp
 config/initializers/d2i.rb
-config/initializers/facebook.rb
 .DS_Store
+.rvmrc
+config/*.yml
+config/deploy.rb
+config/initializers/omniauth.rb
+config/initializers/secure_resque.rb
+config/initializers/action_mailer.rb
+config/monit/unicorn.conf

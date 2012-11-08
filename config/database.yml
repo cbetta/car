@@ -1,4 +1,0 @@
-development:
-  adapter: postgresql
-  database: d2i_dev
-  encoding: UTF8
