@@ -4,3 +4,6 @@ Currently the app just pulls in data from my [Drive2Improve](https://drivetoimpr
 
 The most [interesting code](https://github.com/cbetta/car/blob/master/app/models/user.rb) (in my eyes) is the authorisation. The app uses Facebook for login but authorises users against a friends list controlled by me. This means only family and friends that I authorized can see the map.
 
+## License
+
+See LICENSE
