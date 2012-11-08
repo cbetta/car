@@ -24,6 +24,6 @@ end
 
 group :development do
   gem 'rvm-capistrano',   '1.2.7'
-  gem 'capistrano-shared_file', github: "cbetta/capistrano-shared_file", branch: "load_fix"
+  gem 'capistrano-shared_file', require: nil
 end
 
