@@ -3,14 +3,6 @@ class Location
     CURRENT_LOCATION_URL = "https://drivetoimprove.co.uk/api/m/AllVehiclesStatus".freeze
     TICKS_URL = "https://drivetoimprove.co.uk/api/m/TelemetryInfoByType/%s?from=%s&to=%s&type=1,25".freeze
 
-    def async_load_current
-      Resque.enqueue Location::Loader::LoadCurrent
-    end
-
-    def async_load_past from
-      Resque.enqueue Location::Loader::LoadPast, from.to_s
-    end
-
     def load_current
       status = connection.get(CURRENT_LOCATION_URL).body["GetAllVehiclesStatusResult"].first
       Location.from(status)

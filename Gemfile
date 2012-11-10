@@ -4,8 +4,6 @@ gem 'rails',                    '3.2.8'
 gem 'pg',                       '0.14.1'
 gem 'unicorn',                  '4.4.0'
 gem 'capistrano',               '2.13.5'
-gem 'resque',                   '1.23.0'
-gem 'resque-pool',              '0.3.0'
 
 gem 'faraday',                  '0.8.4'
 gem 'faraday_middleware',       '0.9.0'
