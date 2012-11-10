@@ -1,7 +1,6 @@
 namespace :location do
   desc "Update current location"
   task :load_current => :environment do
-    puts "Test"
     Location::Loader.new.load_current
   end
 
